@@ -89,6 +89,7 @@ private final BCryptPasswordEncoder encoder=new BCryptPasswordEncoder(14);
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(slug, user.getPassword())
             );
+            System.out.println("Authenticated principal: " + auth.getPrincipal());
             return jwtService.generateToken(user.getSlug());
         } catch (BadCredentialsException ex) {
 

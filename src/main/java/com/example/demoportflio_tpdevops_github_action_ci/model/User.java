@@ -1,6 +1,8 @@
 package com.example.demoportflio_tpdevops_github_action_ci.model;
 
 
+import java.io.Serializable;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -9,9 +11,9 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User  implements Serializable  {
 
-
+     private static final long serialVersionUID = 1L; 
     /*@Id
     @SequenceGenerator(
             name = "user_seq",               // logique Hibernate

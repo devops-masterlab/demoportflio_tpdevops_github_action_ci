@@ -21,7 +21,10 @@ public class ValidationConfig implements WebMvcConfigurer {
         this.validatorFactory = bean;
         return bean;
     }
-
+      @SuppressFBWarnings(
+            value = "EI_EXPOSE_REP",
+            justification = "Relation JPA : référence mutable nécessaire pour Hibernate"
+    )
     @Override
     public Validator getValidator() {
         return this.validatorFactory;
