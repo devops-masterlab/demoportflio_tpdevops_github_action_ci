@@ -117,18 +117,18 @@ jobs:
       - name: Build Docker image
         run: |
           BRANCH_TAG=${GITHUB_REF#refs/heads/}
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/demoportflio_tpdevops_github_action_ci:$BRANCH_TAG staging/
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/{{DOCKER_HUB_NAME}}:$BRANCH_TAG staging/
           if [ "$BRANCH_TAG" == "main" ]; then
-            docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/demoportflio_tpdevops_github_action_ci:main \
-                       ${{ secrets.DOCKER_HUB_USERNAME }}/demoportflio_tpdevops_github_action_ci:latest
+            docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/{{DOCKER_HUB_NAME}}:main \
+                       ${{ secrets.DOCKER_HUB_USERNAME }}/{{DOCKER_HUB_NAME}}:latest
           fi
 
       - name: Push Docker image
         run: |
           BRANCH_TAG=${GITHUB_REF#refs/heads/}
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/demoportflio_tpdevops_github_action_ci:$BRANCH_TAG
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/{{DOCKER_HUB_NAME}}:$BRANCH_TAG
           if [ "$BRANCH_TAG" == "main" ]; then
-            docker push ${{ secrets.DOCKER_HUB_USERNAME }}/demoportflio_tpdevops_github_action_ci:latest
+            docker push ${{ secrets.DOCKER_HUB_USERNAME }}/{{DOCKER_HUB_NAME}}:latest
           fi
 
   deploy:
