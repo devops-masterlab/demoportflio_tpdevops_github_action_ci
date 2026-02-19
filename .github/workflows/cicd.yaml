@@ -72,7 +72,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.TOKEN_EXO1_SONAR }}
         run: |
-          mvn clean verify verify -DskipTests -Dpmd.skip=true sonar:sonar \
+          mvn clean verify -DskipTests -Dpmd.skip=true sonar:sonar \
             -Dsonar.projectKey=cidevopsgithubaction \
             -Dsonar.organization=ciDevopsGithubAction \
             -Dsonar.host.url=https://sonarcloud.io \
