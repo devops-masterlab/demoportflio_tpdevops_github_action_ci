@@ -67,18 +67,16 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-
       - name: SonarCloud Scan
         env:
-          SONAR_TOKEN: ${{ secrets.TOKEN_EXO1_SONAR }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn clean verify -DskipTests -Dpmd.skip=true sonar:sonar \
+          mvn clean verify -DskipTests sonar:sonar \
             -Dsonar.projectKey=cidevopsgithubaction \
             -Dsonar.organization=ciDevopsGithubAction \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.branch.name=${{ github.ref_name }}
-         
-
+    
   security-check:
     name: Security Analysis
     runs-on: ubuntu-latest
