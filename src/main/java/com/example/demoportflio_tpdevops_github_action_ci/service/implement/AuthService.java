@@ -19,7 +19,7 @@ public class AuthService {
         if (auth != null && auth.getPrincipal() instanceof UserPrincipal) {
             return ((UserPrincipal) auth.getPrincipal()).getUser();
         }
-        throw new RuntimeException("Utilisateur non connecté !");
+        throw new RuntimeException("Utilisateur non connecté");
     }
 }
 
