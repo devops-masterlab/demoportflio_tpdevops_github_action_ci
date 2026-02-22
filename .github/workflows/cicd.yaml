@@ -56,35 +56,30 @@ jobs:
 
  
   docker:
-    name: Build & Push Docker
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: package-final
-          path: staging
-      - name : show download artifact directory
-        run: pwd && ls .
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      - name: Build Docker image
-        run: |
+   - name: Build Docker image
+     run: |
+        # Nettoyer le nom de branche pour un tag Docker valide
+        if [[ "$GITHUB_REF" == refs/pull/* ]]; then
+          # C'est une Pull Request
+          PR_NUMBER=$(echo "$GITHUB_REF" | sed 's/refs\/pull\/\([0-9]*\)\/.*/\1/')
+          BRANCH_TAG="pr-$PR_NUMBER"
+        else
+          # C'est une branche normale
           BRANCH_TAG=${GITHUB_REF#refs/heads/}
-          echo "Branch tag: '$BRANCH_TAG'"
-          echo "Full tag: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_NAME }}:$BRANCH_TAG"
-          BRANCH_TAG=$(echo "$BRANCH_TAG" | sed 's/[^a-zA-Z0-9._-]/-/g')
-            
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_NAME }}:$BRANCH_TAG staging/
-
+        fi
+        
+        # Nettoyer les caractères non autorisés
+        BRANCH_TAG=$(echo "$BRANCH_TAG" | sed 's/[^a-zA-Z0-9._-]/-/g' | tr '[:upper:]' '[:lower:]')
+        
+        echo "Tag utilisé: $BRANCH_TAG"
+        
+        docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_NAME }}:$BRANCH_TAG staging/
+        
+        # Ne taguer "latest" que pour main
+        if [ "$BRANCH_TAG" = "main" ]; then
+          docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_NAME }}:$BRANCH_TAG \
+                    ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_NAME }}:latest
+        fi
       
   deploy:
     name: Deployment
