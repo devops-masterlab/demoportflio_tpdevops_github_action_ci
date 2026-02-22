@@ -75,7 +75,6 @@ Tag "latest" uniquement pour main
 
 Déploie uniquement depuis main
 
-
 Images
 
 ![alt text](images/image-1.png)
