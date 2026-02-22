@@ -4,9 +4,7 @@ package com.example.demoportflio_tpdevops_github_action_ci.controller;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import com.example.demoportflio_tpdevops_github_action_ci.response.ResponseHandler;
-
 import java.util.Locale;
 
 public abstract class BaseController {
@@ -32,4 +30,3 @@ public abstract class BaseController {
         return ResponseHandler.responseBuilder(message, status, data);
     }
 }
-
