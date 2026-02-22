@@ -91,7 +91,7 @@ jobs:
           
           echo "Tag utilisé: $BRANCH_TAG"
           
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/devops-lab-01-ci:$BRANCH_TAG staging/
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/devops-lab-01-ci:$BRANCH_TAG .
           
           # Ne taguer "latest" que pour main
           if [ "$BRANCH_TAG" = "main" ]; then
