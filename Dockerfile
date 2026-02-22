@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
 # 3. Copier le JAR déjà buildé
-COPY staging/*.jar app.jar
+COPY *.jar app.jar
 
 # 4. Exposer le port (Render utilisera $PORT automatiquement)
 EXPOSE 8080
