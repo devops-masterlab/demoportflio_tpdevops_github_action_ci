@@ -77,4 +77,4 @@ Déploie uniquement depuis main
 
 Images
 
-![alt text](images/image-1.png)
+<p align="center"> <img src="images/image-1.png" width="700"/> </p>
