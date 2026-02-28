@@ -120,7 +120,7 @@ Push vers Docker Hub
 Déploie uniquement depuis main
 
 ## Structure du projet
-![alt text](https://github.com/cicdDevops1/demoportflio_tpdevops_github_action_ci/blob/main/images/image-1.png)
+![alt text](https://github.com/cicdDevops1/demoportflio_tpdevops_github_action_ci/blob/main/images/image-2.png)
 ## Améliorations futures
 
 ✔ Tests unitaires 
@@ -142,7 +142,7 @@ Commit les modifications
 
 Push et créer une Pull Request
 
-Images
+Images de pipline
 
 
 ![alt text](https://github.com/cicdDevops1/demoportflio_tpdevops_github_action_ci/blob/main/images/image-1.png)
