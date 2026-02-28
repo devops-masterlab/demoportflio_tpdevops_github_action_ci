@@ -2,80 +2,145 @@
 
 ## Description
 
-Ce projet est une API Spring Boot intégrant un pipeline CI/CD complet avec GitHub Actions et Docker.
+Ce projet est une API Spring Boot intégrant un pipeline CI/CD complet avec GitHub Actions, Docker, et SonarQube pour l’analyse qualité et sécurité du code.
 
-Il permet de démontrer :
-- Build Maven automatisé
-- Création d’image Docker
-- Push automatique vers Docker Hub
-- Déploiement conditionnel sur la branche main
+Le pipeline automatise :
 
----
+ Build Maven
 
-##  Technologies utilisées
+ Gestion des artefacts
 
-- Java 17
-- Spring Boot
-- Maven
-- Docker
-- GitHub Actions
-- Docker Hub
+ Analyse qualité et sécurité
 
----
+ Création d’image Docker
 
-##  Architecture CI/CD
+ Push vers Docker Hub
 
-1. Push sur une branche dev ou main
-2. Build Maven
-3. Génération du JAR avec un artifact
-4. Build Docker Image
-5. Push vers Docker Hub
-6. Déploiement (main uniquement)
+Déploiement conditionnel
 
----
+ ## Architecture CI/CD
 
-## Installation locale
+Le pipeline suit un workflow DevOps moderne :
 
-### 1️.Cloner le projet
+### Build Stage
 
-```bash
-git clone https://github.com/cicdDevops1/demoportflio_tpdevops_github_action_ci
-cd demoportflio_tpdevops_github_action_ci
+Checkout du code source
 
-### 2️. Build Maven
-```bash
+Configuration Java 17
 
-mvn clean package
-```
-### 2️. Build Maven
+Cache Maven
 
-java -jar target/*.jar
+Build du projet
+### Quality & Security Stage (SonarQube)
 
-### 3️ Lancer l'application
-```bash
-java -jar app.jar
+Analyse statique du code
+
+Détection des vulnérabilités
+
+Vérification des bonnes pratiques
+
+### Packaging Stage
+
+Génération du fichier JAR
+
+Sauvegarde en artifact GitHub
+
+### Docker Stage
+
+Construction de l’image Docker
+
+Tag dynamique basé sur :
+
+Branche
+
+Pull Request
+
+Push automatique vers Docker Hub
+
+### Deployment Stage
+
+Déploiement uniquement depuis la branche main
+
+## Technologies utilisées
+
+Java jdk17
+
+Spring Boot 3.5.3
+
+Maven
 
 Docker
-Build image
 
-docker build -t devops-lab-01-ci
+GitHub Actions
 
-Run container
+SonarQube
 
+Docker Hub
+
+## Installation et exécution locale
+### Cloner le projet
+git clone https://github.com/cicdDevops1/demoportflio_tpdevops_github_action_ci
+cd demoportflio_tpdevops_github_action_ci
+### Build le projet
+mvn clean package
+### Exécuter l’application
+java -jar target/*.jar
+### Docker
+Build image Docker
+docker build -t devops-lab-01-ci .
+### Lancer le container
 docker run -p 8080:8080 devops-lab-01-ci
-```
+## Sécurité & Qualité (SonarQube)
 
-CI/CD
+Le pipeline peut intégrer SonarQube :
 
-Le pipeline GitHub Actions :
+Variables à configurer dans GitHub Secrets :
+
+SONAR_HOST_URL
+
+SONAR_TOKEN
+
+Commande Maven :
+
+mvn sonar:sonar
+## Workflow CI/CD GitHub Actions
+
+Le pipeline :
 
 Se déclenche sur toutes les branches
 
-Push l’image Docker avec un tag dynamique
+Build automatiquement le projet
 
-Tag "latest" uniquement pour main
+Analyse qualité et sécurité
+
+Génère une image Docker
+
+Push vers Docker Hub
 
 Déploie uniquement depuis main
+
+## Structure du projet
+![alt text](https://github.com/cicdDevops1/demoportflio_tpdevops_github_action_ci/blob/main/images/image-1.png)
+## Améliorations futures
+
+✔ Tests unitaires 
+✔ Déploiement Cloud
+✔ Scan sécurité avancé
+
+## Auteur
+
+Projet DevOps Portfolio — CI/CD Spring Boot
+Développé pour démonstration DevOps moderne.
+
+💡 Contribution
+
+Fork le projet
+
+Créer une branche
+
+Commit les modifications
+
+Push et créer une Pull Request
 
 Images
 
