@@ -78,4 +78,4 @@ Déploie uniquement depuis main
 Images
 
 
-![alt text](images/image-1.png)
+![alt text](https://github.com/cicdDevops1/demoportflio_tpdevops_github_action_ci/blob/main/images/image-1.png)
