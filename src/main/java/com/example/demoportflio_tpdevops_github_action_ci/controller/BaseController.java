@@ -23,7 +23,6 @@ public abstract class BaseController {
     protected Locale resolveLocale(String lang) {
         return (lang != null && lang.equalsIgnoreCase("en")) ? Locale.ENGLISH : Locale.FRENCH;
     }
-
     /**
      * Méthode utilitaire pour construire une réponse standardisée
      */
