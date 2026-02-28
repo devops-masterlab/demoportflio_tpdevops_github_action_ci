@@ -7,7 +7,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import org.springframework.security.access.method.P;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import org.springframework.web.bind.annotation.*;
@@ -54,7 +54,7 @@ public class SectionController extends BaseController {
 
     @PostMapping("/add")
     @PreAuthorize("#slug ==  authentication.principal.username")
-    public ResponseEntity<Object> createSection(@Valid @RequestBody Section section, @RequestParam(name = "lang", required = false) String lang, @P("slug") @PathVariable("slug") String slug) {
+    public ResponseEntity<Object> createSection(@Valid @RequestBody Section section, @RequestParam(name = "lang", required = false) String lang, @PathVariable("slug") String slug) {
 
          return buildResponse(
                 "section.add.success" , sectionService.createSectionForCurrentUser(section, slug) ,lang,
